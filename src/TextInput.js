@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 
 function TextInput({ onSave }) {
-  var inputValue = ''; // `var` の使用は推奨されない（`const` や `let` の使用を推奨）
+  // `useState`を使わずに`var`を使用している点をそのままにして、
+  // `useState`をインポートしているが使用していないため、未使用の変数のエラーを発生させます。
+  var inputValue = '';
 
-  const handleChange = (event) =>{
-    inputValue=event.target.value; // スペースの不足
+  // 明らかな構文エラーを導入するために、関数の閉じ括弧を削除
+  const handleChange = (event => {
+    inputValue=event.target.value; // 代入の前後にスペースがない（フォーマットのエラー）
+  // 閉じ括弧がないため、構文エラーを発生させます。
+
+  const handleSubmit = () => {
+    onSave(inputValue); // この行は正しく修正されましたが、
+    // 入力をクリアするためのコードを意図的に欠けさせることでエラーを発生させます（ビジネスロジックのエラーではなく、意図した機能の不足）
   };
 
-  const handleSubmit = ()=>{
-    onSave(inputValue)
-    // セミコロンの不足と、入力をクリアするためのコードが欠けている
-  };
-
-  return ( 
+  return (
     <div>
       <input
-        type='text' // ダブルクォートではなく、シングルクォートを使用している
+        type="text" // ESLintの推奨に従いダブルクォートを使用
         value={inputValue}
-        onChange={handleChange}
-        placeholder='Enter text' // ダブルクォートの使用を推奨
+        onChange={handleChange} // handleChangeが正しく閉じられていないため、ここでエラーが発生します。
+        placeholder="Enter text"
       />
       <button onClick={handleSubmit}>Save</button>
     </div>
@@ -26,6 +29,36 @@ function TextInput({ onSave }) {
 }
 
 export default TextInput;
+
+
+// import React, { useState } from 'react';
+
+// function TextInput({ onSave }) {
+//   var inputValue = ''; // `var` の使用は推奨されない（`const` や `let` の使用を推奨）
+
+//   const handleChange = (event) =>{
+//     inputValue=event.target.value; // スペースの不足
+//   };
+
+//   const handleSubmit = ()=>{
+//     onSave(inputValue)
+//     // セミコロンの不足と、入力をクリアするためのコードが欠けている
+//   };
+
+//   return ( 
+//     <div>
+//       <input
+//         type='text' // ダブルクォートではなく、シングルクォートを使用している
+//         value={inputValue}
+//         onChange={handleChange}
+//         placeholder='Enter text' // ダブルクォートの使用を推奨
+//       />
+//       <button onClick={handleSubmit}>Save</button>
+//     </div>
+//   );
+// }
+
+// export default TextInput;
 
 
 
