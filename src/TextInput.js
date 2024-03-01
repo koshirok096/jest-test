@@ -12,7 +12,7 @@ function TextInput({ onSave }) {
     // セミコロンの不足と、入力をクリアするためのコードが欠けている
   };
 
-  return (
+  return ( 
     <div>
       <input
         type='text' // ダブルクォートではなく、シングルクォートを使用している
