@@ -5,7 +5,7 @@ function TextInput({ onSave }) {
   // `useState`をインポートしているが使用していないため、未使用の変数のエラーを発生させます。
   var inputValue = '';
 
-  // 明らかな構文エラーを導入するために、関数の閉じ括弧を削除
+  // 明らかな構文エラーを導入するために、関数の閉じ括弧を削除 
   const handleChange = (event => {
     inputValue=event.target.value; // 代入の前後にスペースがない（フォーマットのエラー）
   // 閉じ括弧がないため、構文エラーを発生させます。
